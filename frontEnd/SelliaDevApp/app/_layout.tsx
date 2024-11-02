@@ -1,14 +1,17 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useColorScheme } from '../hooks/useColorScheme';
+import SessionInfo from '../components/SessionInfo';
+import Chats from './Chats';
+import Chat from './Chat';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+const Drawer = createDrawerNavigator();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -22,16 +25,14 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
+  if (!loaded) return null;
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+      <Drawer.Navigator drawerContent={() => <SessionInfo />}>
+        <Drawer.Screen name="Chats" component={Chats} />
+        <Drawer.Screen name="Chat" component={Chat} />
+      </Drawer.Navigator>
     </ThemeProvider>
   );
 }

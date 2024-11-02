@@ -1,38 +1,22 @@
+// SessionInfo.js
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const SessionInfo = () => {
   return (
-    <View style={styles.sessionInfoContainer}>
-      <Image
-        source={{ uri: 'https://example.com/your-profile-pic.jpg' }} // Cambia esto a la URL de la imagen de perfil
-        style={styles.profileImage}
-      />
-      <Text style={styles.userName}>Tu Nombre</Text>
-      <Text style={styles.userStatus}>En línea</Text>
+    <View style={styles.sessionContainer}>
+      <Text style={styles.sessionTitle}>Usuario</Text>
+      <Text>Información de sesión aquí</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  sessionInfoContainer: {
-    padding: 15,
-    backgroundColor: '#f5f5f5',
-    alignItems: 'center',
+  sessionContainer: {
+    padding: 10,
   },
-  profileImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginBottom: 10,
-  },
-  userName: {
-    fontSize: 18,
+  sessionTitle: {
     fontWeight: 'bold',
-  },
-  userStatus: {
-    fontSize: 14,
-    color: '#888',
   },
 });
 

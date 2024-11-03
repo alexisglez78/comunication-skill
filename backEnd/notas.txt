@@ -1,0 +1,48 @@
+ if (text == "text") {
+                var data = samples.sampleText("hola usuario", number);
+
+                whatsappService.sendMessageWhatsapp(data);
+
+            }
+            else if (text == "image") {
+                console.log("entrando a imagen");
+                var data = samples.sampleImage(number);
+                console.log("data",data);
+
+                whatsappService.sendMessageWhatsapp(data);
+            }
+            else if (text == "audio") {
+                var data = samples.sampleAudio(number);
+
+                whatsappService.sendMessageWhatsapp(data);
+            }
+            else if (text == "video") {
+                var data = samples.sampleVideo(number);
+
+                whatsappService.sendMessageWhatsapp(data);
+            }
+            else if (text == "document") {
+                var data = samples.sampleDocument(number);
+
+                whatsappService.sendMessageWhatsapp(data);
+            }
+            else if (text == "button") {
+                var data = samples.sampleButtons(number);
+
+                whatsappService.sendMessageWhatsapp(data);
+            }
+            else if (text == "list") {
+                var data = samples.sampleList(number);
+
+                whatsappService.sendMessageWhatsapp(data);
+            }
+            else if (text == "location") {
+                var data = samples.sampleLocation(number);
+
+                whatsappService.sendMessageWhatsapp(data);
+            }
+            else{
+                var data = samples.sampleText("no entiendo");
+
+                whatsappService.sendMessageWhatsapp(data);
+            }

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import {
   responsiveWidth,
   responsiveHeight,
-} from "react-native-responsive-dimensions"; // Importa las funciones
+} from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "90%",
-    maxWidth: responsiveWidth(100),
+    maxWidth: 400,
     padding: 20,
     borderRadius: 10,
     backgroundColor: "#ffffff",

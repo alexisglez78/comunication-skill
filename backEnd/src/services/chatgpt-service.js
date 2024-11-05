@@ -1,9 +1,5 @@
 const OpenAI = require("openai");
 
-// Initialize OpenAI with the API key
-// const openai = new OpenAI({
-//     apiKey: "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"
-// });
 const openai = new OpenAI({
     organization: "org-TBVxyGgtQlGDua2XTwbnLgyv",
     project: "proj_15fvveQcVBwwUMOk0tCFWtST",

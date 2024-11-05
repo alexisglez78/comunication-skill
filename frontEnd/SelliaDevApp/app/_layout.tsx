@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import SessionInfo from '../components/SessionInfo';
-import Chat from './Chat';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import ChatListScreen from './Chats';
 import { useColorScheme } from '@/hooks/useColorScheme.web';
+import { Header } from 'react-native/Libraries/NewAppScreen';
+import Chat from './components/Chat';
+import ChatListScreen from './components/Chats';
+import SessionInfo from './components/SessionInfo';
 
 const Drawer = createDrawerNavigator();
 
@@ -26,33 +27,47 @@ export default function RootLayout() {
   };
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <View style={styles.container}>
         {isDesktop ? (
-          <View style={styles.desktopLayout}>
-            <View style={styles.leftPanel}>
-              <SessionInfo />
-              <ChatListScreen onSelectChat={setSelectedChatId} navigation={'none'}  mobile={isDesktop} />
-            </View>
-            <View style={styles.centerPanel}>
-              <Chat chatId={selectedChatId} />
+          <View style={styles.container}>
+            <Header />
+            <View style={styles.desktopLayout}>
+              <View style={styles.leftPanel}>
+                <SessionInfo />
+                <ChatListScreen
+                  onSelectChat={setSelectedChatId}
+                  navigation={"none"}
+                  mobile={isDesktop}
+                />
+              </View>
+              <View style={styles.centerPanel}>
+                <Chat chatId={selectedChatId} />
+              </View>
             </View>
           </View>
         ) : (
-          <Drawer.Navigator drawerContent={() => <SessionInfo />} drawerType='front'>
-          <Drawer.Screen name="Chats">
-            {({ navigation }) => (
-              <ChatListScreen onSelectChat={setSelectedChatId} navigation={navigation} mobile={isDesktop} />
-            )}
-          </Drawer.Screen>
-          <Drawer.Screen name="Chat">
-            {({ route }) => {
-              const chatId = route.params?.chatId || selectedChatId;
-              console.log("paul callback", chatId); // Asegúrate de que esto se imprima
-              return <Chat chatId={chatId} />;
-            }}
-          </Drawer.Screen>
-        </Drawer.Navigator>
+          <Drawer.Navigator
+            drawerContent={() => <SessionInfo />}
+            drawerType="front"
+          >
+            <Drawer.Screen name="Chats">
+              {({ navigation }) => (
+                <ChatListScreen
+                  onSelectChat={setSelectedChatId}
+                  navigation={navigation}
+                  mobile={isDesktop}
+                />
+              )}
+            </Drawer.Screen>
+            <Drawer.Screen name="Chat">
+              {({ route }) => {
+                const chatId = route.params?.chatId || selectedChatId;
+                console.log("paul callback", chatId);
+                return <Chat chatId={chatId} />;
+              }}
+            </Drawer.Screen>
+          </Drawer.Navigator>
         )}
       </View>
     </ThemeProvider>

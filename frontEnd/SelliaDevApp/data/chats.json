@@ -1,0 +1,39 @@
+[
+    {
+      "chat_id": 1,
+      "name": "Chat con Alex",
+      "last_message": {
+        "message_id": 101,
+        "message": "Hola, ¿cómo estás?",
+        "timestamp": "2023-11-05T12:30:00Z"
+      }
+    },
+    {
+      "chat_id": 2,
+      "name": "Grupo de Amigos",
+      "last_message": {
+        "message_id": 102,
+        "message": "Recuerden que mañana nos vemos!",
+        "timestamp": "2023-11-04T15:45:00Z"
+      }
+    },
+    {
+      "chat_id": 3,
+      "name": "Trabajo en equipo",
+      "last_message": {
+        "message_id": 103,
+        "message": "¿Terminaste el reporte?",
+        "timestamp": "2023-11-03T09:20:00Z"
+      }
+    },
+    {
+      "chat_id": 4,
+      "name": "Familia",
+      "last_message": {
+        "message_id": 104,
+        "message": "Nos vemos el domingo!",
+        "timestamp": "2023-11-02T20:00:00Z"
+      }
+    }
+  ]
+  

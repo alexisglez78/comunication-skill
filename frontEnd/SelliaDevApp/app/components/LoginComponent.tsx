@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Button, TextInput, TouchableOpacity } from "react-native";
-import styles from '../styles/LoginStyle';
-import {login} from '../../services/authService'
+import styles from "../styles/LoginStyle";
+import { login } from "../../services/authService";
 
 const CustomButton = ({ title, onPress }) => {
   return (
@@ -18,38 +18,45 @@ const LoginComponent = ({ setIsAuthenticated }) => {
 
   const handleLogin = async () => {
     const token = await login(email, password);
-  
+
     if (token) {
       setIsAuthenticated(true);
     } else {
-      setErrorMessage("Error en el inicio de sesión. Verifica tus credenciales.");
+      setErrorMessage(
+        "Error en el inicio de sesión. Verifica tus credenciales."
+      );
     }
   };
-  
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.icon}>👋</Text>
         <Text style={styles.welcomeText}>¡Bienvenido!</Text>
-        <Text style={styles.welcomeSubtitle}>Inicia sesión para recibir atención personalizada</Text>
+        <Text style={styles.welcomeSubtitle}>
+          Inicia sesión para recibir atención personalizada
+        </Text>
 
         <TextInput
           style={styles.input}
           placeholder="Correo electrónico"
-          value={email} 
-          onChangeText={(text) => setEmail(text)} 
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
-          value={password} 
+          value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
         />
-
+        {errorMessage ? (
+          <View>
+            <Text>{errorMessage}</Text>
+          </View>
+        ) : null}
         <View style={styles.buttonContainer}>
-        <CustomButton title="Iniciar sesión" onPress={handleLogin} />
+          <CustomButton title="Iniciar sesión" onPress={handleLogin} />
         </View>
       </View>
     </View>

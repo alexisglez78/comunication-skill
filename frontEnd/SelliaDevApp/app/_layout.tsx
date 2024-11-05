@@ -3,7 +3,6 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useColorScheme } from '@/hooks/useColorScheme.web';
-import Header from './shared/header';
 import SessionInfo from './components/SessionInfo';
 import ChatListScreen from './components/Chats';
 import Chat from './components/Chat';
@@ -34,10 +33,9 @@ export default function RootLayout() {
           <>
             {isDesktop ? (
               <View style={styles.container}>
-                <Header />
                 <View style={styles.desktopLayout}>
                   <View style={styles.leftPanel}>
-                    <SessionInfo />
+                    {/* <SessionInfo /> */}
                     <ChatListScreen
                       onSelectChat={setSelectedChatId}
                       navigation={"none"}
@@ -99,12 +97,10 @@ const styles = StyleSheet.create({
     width: '30%',
     borderRightWidth: 1,
     borderRightColor: '#eee',
-    padding: 10,
     backgroundColor: '#f9f9f9',
   },
   centerPanel: {
     flex: 1,
-    padding: 10,
     backgroundColor: '#ffffff',
   }
 });

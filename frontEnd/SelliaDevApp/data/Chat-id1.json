@@ -1,0 +1,25 @@
+{
+    "chat_id": 1,
+    "name": "Chat con Alex",
+    "messages": [
+      {
+        "message_id": 1,
+        "sender": "Alex",
+        "message": "Hola, ¿cómo estás?",
+        "timestamp": "2023-11-05T12:30:00Z"
+      },
+      {
+        "message_id": 2,
+        "sender": "Tú",
+        "message": "¡Hola Alex! Bien, gracias. ¿Y tú?",
+        "timestamp": "2023-11-05T12:31:00Z"
+      },
+      {
+        "message_id": 3,
+        "sender": "Alex",
+        "message": "También bien, gracias. ¿Qué tal tu fin de semana?",
+        "timestamp": "2023-11-05T12:32:00Z"
+      }
+    ]
+  }
+  

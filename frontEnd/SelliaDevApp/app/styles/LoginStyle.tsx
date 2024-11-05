@@ -3,6 +3,7 @@ import {
   responsiveWidth,
   responsiveHeight,
 } from "react-native-responsive-dimensions";
+import theme from '../styles/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buttonSubmit: {
-    backgroundColor: "#6200ee",
+    backgroundColor: theme.primary,
     borderRadius: 6,
     paddingVertical: 10,
     paddingHorizontal: 20,

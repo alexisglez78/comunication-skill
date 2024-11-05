@@ -8,36 +8,42 @@ const SECRET_KEY = 'key1234';
 
 // Función para cifrar la contraseña
 export const encryptPassword = (password) => {
-  if (Platform.OS === 'web') {
-    return CryptoJS.AES.encrypt(password, SECRET_KEY).toString(); // Cifrado para web
-  } else {
-    return password; // Sin cifrado para Android/iOS
-  }
+  // if (Platform.OS === 'web') {
+  //   return CryptoJS.AES.encrypt(password, SECRET_KEY).toString(); // Cifrado para web
+  // } else {
+  //   return password;
+  // }
+  return password
 };
 
-// Función para iniciar sesión y obtener el JWT
 export const login = async (email, password) => {
+  const encryptedEmail = encryptPassword(email);
+  const encryptedPassword = encryptPassword(password);
   try {
-    const encryptedEmail = encryptPassword(email);
-    const encryptedPassword = encryptPassword(password);
-
-    console.log({ email: encryptedEmail, password: encryptedPassword });
-
-    const response = await fetch(`${API_URL}/users`, {
-      method: 'GET',
+    const response = await fetch('https://dummyjson.com/user/login', {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
+      body: JSON.stringify({
+        username: 'emilys',
+        password: 'emilyspass',
+        expiresInMins: 60,
+      }),
     });
 
-    // Simulación de token (esto debe ser reemplazado con tu lógica real)
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsZXhpcyBHb256YWxleiIsImlhdCI6MTUxNjIzOTAyMn0.kM6HF6lkPYWnEALO4L4tXFoBoF5uqlRjFgBwU8TArlk';
+    if (response.status === 200) {
+      const data = await response.json();
+      await AsyncStorage.setItem('userToken', data.accessToken);
+      return data.accessToken;
 
-    await AsyncStorage.setItem('userToken', token);
+    } else {
+      console.error('Error en el login', response.status);
+      return null;
+    }
 
-    return token;
   } catch (error) {
-    console.error("Error en el login:", error);
+    console.error('Error en el login:', error);
     return null;
   }
 };

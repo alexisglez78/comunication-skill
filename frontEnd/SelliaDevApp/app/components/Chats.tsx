@@ -18,7 +18,7 @@ const ChatListScreen = ({ onSelectChat, navigation,mobile }) => {
           onPress={() => {
             onSelectChat(item.id); // Actualiza el chat seleccionado
             if (!mobile) {
-              navigation.navigate('Chat', { chatId: item.id }); 
+              navigation.navigate('components/Chat', { chatId: item.id }); 
             }
           }}
         >

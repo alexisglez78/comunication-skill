@@ -1,0 +1,13 @@
+// styles.scss
+$header-bg: red;
+
+.header {
+  background-color: $header-bg;
+  padding: 20px;
+  text-align: center;
+}
+
+.txtLogin {
+  font-size: 18px;
+  color: #333;
+}

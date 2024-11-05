@@ -3,21 +3,22 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useColorScheme } from '@/hooks/useColorScheme.web';
-import { Header } from 'react-native/Libraries/NewAppScreen';
-import Chat from './components/Chat';
-import ChatListScreen from './components/Chats';
+import Header from './shared/header';
 import SessionInfo from './components/SessionInfo';
+import ChatListScreen from './components/Chats';
+import Chat from './components/Chat';
+import LoginComponent from './components/LoginComponent';
 
 const Drawer = createDrawerNavigator();
 
 const { width } = Dimensions.get('window');
 const isDesktop = width >= 768;
 
-
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [selectedChatId, setSelectedChatId] = useState(null);
-  
+  const [isAuthenticated, setIsAuthenticated] = useState(false); 
+
   const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId);
     if (!isDesktop) {
@@ -29,45 +30,56 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <View style={styles.container}>
-        {isDesktop ? (
-          <View style={styles.container}>
-            <Header />
-            <View style={styles.desktopLayout}>
-              <View style={styles.leftPanel}>
-                <SessionInfo />
-                <ChatListScreen
-                  onSelectChat={setSelectedChatId}
-                  navigation={"none"}
-                  mobile={isDesktop}
-                />
+        {isAuthenticated ? (
+          <>
+            {isDesktop ? (
+              <View style={styles.container}>
+                <Header />
+                <View style={styles.desktopLayout}>
+                  <View style={styles.leftPanel}>
+                    <SessionInfo />
+                    <ChatListScreen
+                      onSelectChat={setSelectedChatId}
+                      navigation={"none"}
+                      mobile={isDesktop}
+                    />
+                  </View>
+                  <View style={styles.centerPanel}>
+                    <Chat chatId={selectedChatId} />
+                  </View>
+                </View>
               </View>
-              <View style={styles.centerPanel}>
-                <Chat chatId={selectedChatId} />
-              </View>
-            </View>
-          </View>
+            ) : (
+              <Drawer.Navigator
+                drawerContent={() => <SessionInfo />}
+                drawerType="front"
+              >
+                <Drawer.Screen 
+                  name="components/Chats"
+                  options={{ title: '' }} // Cambia el título aquí
+                >
+                  {({ navigation }) => (
+                    <ChatListScreen
+                      onSelectChat={setSelectedChatId}
+                      navigation={navigation}
+                      mobile={isDesktop}
+                    />
+                  )}
+                </Drawer.Screen>
+                <Drawer.Screen 
+                  name="components/Chat"
+                  options={{ title: 'Usuario $varUSer' }}
+                >
+                  {({ route }) => {
+                    const chatId = route.params?.chatId || selectedChatId;
+                    return <Chat chatId={chatId} />;
+                  }}
+                </Drawer.Screen>
+              </Drawer.Navigator>
+            )}
+          </>
         ) : (
-          <Drawer.Navigator
-            drawerContent={() => <SessionInfo />}
-            drawerType="front"
-          >
-            <Drawer.Screen name="Chats">
-              {({ navigation }) => (
-                <ChatListScreen
-                  onSelectChat={setSelectedChatId}
-                  navigation={navigation}
-                  mobile={isDesktop}
-                />
-              )}
-            </Drawer.Screen>
-            <Drawer.Screen name="Chat">
-              {({ route }) => {
-                const chatId = route.params?.chatId || selectedChatId;
-                console.log("paul callback", chatId);
-                return <Chat chatId={chatId} />;
-              }}
-            </Drawer.Screen>
-          </Drawer.Navigator>
+          <LoginComponent setIsAuthenticated={setIsAuthenticated} />
         )}
       </View>
     </ThemeProvider>
@@ -77,22 +89,22 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff', // Cambia el fondo a blanco o a un color que desees
+    backgroundColor: '#ffffff',
   },
   desktopLayout: {
     flexDirection: 'row',
     flex: 1,
   },
   leftPanel: {
-    width: '30%', // Puedes ajustar el ancho según tus necesidades
+    width: '30%',
     borderRightWidth: 1,
     borderRightColor: '#eee',
     padding: 10,
-    backgroundColor: '#f9f9f9', // Color de fondo del panel izquierdo
+    backgroundColor: '#f9f9f9',
   },
   centerPanel: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#ffffff', // Color de fondo del panel central
+    backgroundColor: '#ffffff',
   }
 });

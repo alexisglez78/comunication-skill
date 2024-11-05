@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import { View, Text, Button, TextInput } from "react-native";
-import styles from "../styles/LoginStyle";
+import { View, Text, Button, TextInput, TouchableOpacity } from "react-native";
+import styles from '../styles/LoginStyle';
 import {login} from '../../services/authService'
+
+const CustomButton = ({ title, onPress }) => {
+  return (
+    <TouchableOpacity style={styles.buttonSubmit} onPress={onPress}>
+      <Text style={styles.buttonText}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
 
 const LoginComponent = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // const handleLogin = () => {
-  //   console.log("Iniciando sesión con:", email, password);
-  // };
   const handleLogin = async () => {
     const token = await login(email, password);
   
-    console.log(token);
     if (token) {
-      console.log("logeado");
-      setIsAuthenticated(true); // Actualiza el estado de autenticación
+      setIsAuthenticated(true);
     } else {
       setErrorMessage("Error en el inicio de sesión. Verifica tus credenciales.");
     }
@@ -34,19 +37,19 @@ const LoginComponent = ({ setIsAuthenticated }) => {
         <TextInput
           style={styles.input}
           placeholder="Correo electrónico"
-          value={email} // Asegúrate de que solo sea un string
-          onChangeText={(text) => setEmail(text)} // Asigna el texto directamente al estado
+          value={email} 
+          onChangeText={(text) => setEmail(text)} 
         />
         <TextInput
           style={styles.input}
           placeholder="Contraseña"
-          value={password} // Asegúrate de que solo sea un string
-          onChangeText={(text) => setPassword(text)} // Asigna el texto directamente al estado
+          value={password} 
+          onChangeText={(text) => setPassword(text)}
           secureTextEntry
         />
 
         <View style={styles.buttonContainer}>
-          <Button title="Iniciar sesión" onPress={handleLogin} color="#6200ee" />
+        <CustomButton title="Iniciar sesión" onPress={handleLogin} />
         </View>
       </View>
     </View>

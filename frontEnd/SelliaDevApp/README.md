@@ -1,50 +1,98 @@
-# Welcome to your Expo app 👋
+# Proyecto de Chat en React Native con Expo y Backend Node.js
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Descripción
 
-## Get started
+Este proyecto es una aplicación de chat híbrida, construida utilizando **React Native con Expo** para el frontend y **Node.js** para el backend. La aplicación ofrece una interfaz de chat similar a WhatsApp, con integración de un servicio de mensajería como **WhatsApp API** para enviar y recibir mensajes. Además, la aplicación maneja la interacción de los usuarios con emojis, mensajes en tiempo real a través de **WebSockets**, y tiene una funcionalidad de autenticación para el login de los usuarios, utilizando **JSON Web Tokens (JWT)** para la gestión segura de sesiones y **cifrado de contraseñas** para proteger la información de los usuarios.
 
-1. Install dependencies
+## Tecnologías Utilizadas
 
-   ```bash
-   npm install
-   ```
+### Frontend
 
-2. Start the app
+- **React Native**: Para la construcción de la interfaz de usuario nativa tanto en dispositivos móviles como en la web.
+- **Expo**: Herramienta que facilita el desarrollo con React Native proporcionando características como previsualización en tiempo real, compilación sin necesidad de configuración compleja y más.
+- **Socket.io**: Para la comunicación en tiempo real entre el cliente y el servidor, gestionando la recepción de mensajes en tiempo real.
+- **SASS/LESS**: Para la gestión de estilos con preprocesadores de CSS, brindando una mejor organización de los estilos en el proyecto.
+- **EmojiPicker**: Integración de un selector de emojis para enriquecer la experiencia de mensajería.
+- **React Navigation**: Utilizado para la gestión de las rutas dentro de la aplicación.
+- **React Context API**: Para la gestión de estado global y la compartición de datos como la información del usuario a lo largo de los componentes.
+- **JWT (JSON Web Token)**: Sistema de autenticación basado en tokens, que permite a los usuarios autenticarse y mantener su sesión de forma segura.
 
-   ```bash
-    npx expo start
-   ```
+### Backend
 
-In the output, you'll find options to open the app in a
+- **Node.js**: Plataforma para la creación del servidor backend.
+- **Express.js**: Framework minimalista para Node.js que facilita la creación de servidores web.
+- **JWT (JSON Web Token)**: Sistema de autenticación basado en tokens, que permite a los usuarios autenticarse y mantener su sesión de forma segura.
+- **Cifrado de Contraseñas**: Cifrado seguro de las contraseñas de los usuarios para proteger su información en la base de datos, utilizando **bcrypt**.
+- **WhatsApp API**: Integración de WhatsApp como sistema de mensajería para la aplicación.
+- **Socket.io**: Para la comunicación en tiempo real en el backend, permitiendo que el servidor empuje mensajes a los clientes.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Funcionalidades
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 1. **Autenticación Segura de Usuario**
+   - La aplicación permite a los usuarios registrarse e iniciar sesión utilizando un sistema de autenticación basado en tokens JWT.
+   - Las contraseñas de los usuarios se cifran usando bcrypt antes de ser almacenadas en la base de datos, garantizando la seguridad de la información.
+   - Los tokens JWT permiten que el backend autentique cada solicitud realizada por un usuario, asegurando que solo usuarios autenticados tengan acceso a la aplicación.
 
-## Get a fresh project
+### 2. **Mensajería en Tiempo Real**
+   - Los mensajes se envían y reciben en tiempo real utilizando WebSockets y **Socket.io**.
+   - La integración con la **WhatsApp API** permite enviar mensajes a través de WhatsApp, y la aplicación recibe notificaciones sobre nuevos mensajes.
 
-When you're ready, run:
+### 3. **Envío de Mensajes**
+   - Los usuarios pueden enviar mensajes de texto y emojis a través de la aplicación.
+   - Se incluye un selector de emojis que facilita la inserción de emojis en los mensajes.
 
-```bash
-npm run reset-project
-```
+### 4. **Lista de Conversaciones**
+   - Los usuarios pueden ver una lista de conversaciones previas.
+   - Cada conversación tiene un historial de mensajes que se muestra en la interfaz.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 5. **Interfaz de Usuario**
+   - La interfaz está optimizada tanto para dispositivos móviles como para escritorio utilizando el ancho de la pantalla.
+   - Los componentes son reutilizables y la aplicación sigue un patrón de diseño modular, separando la lógica de la presentación.
 
-## Learn more
+### 6. **Notificaciones**
+   - La aplicación recibe notificaciones de nuevos mensajes a través de WebSockets, sin necesidad de actualizar la página.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Evidencias Version Mobile
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+<img src="./assets/images/Captura%20de%20pantalla%202024-11-06%20012343.png" alt="Logo del Proyecto" width="200"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 012439.png" alt="Logo del Proyecto" width="200"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 012531.png" alt="Logo del Proyecto" width="200"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013009.png" alt="Logo del Proyecto" width="200"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013138.png" alt="Logo del Proyecto" width="200"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013321.png" alt="Logo del Proyecto" width="200"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013413.png" alt="Logo del Proyecto" width="200"/>
 
-## Join the community
+## Evidencias Version Desktop
 
-Join our community of developers creating universal apps.
+<img src="./assets/images/Captura de pantalla 2024-11-06 013505.png" alt="Logo del Proyecto" width="400"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013535.png" alt="Logo del Proyecto" width="400"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013551.png" alt="Logo del Proyecto" width="400"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013608.png" alt="Logo del Proyecto" width="400"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013625.png" alt="Logo del Proyecto" width="400"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013716.png" alt="Logo del Proyecto" width="400"/>
+<img src="./assets/images/Captura de pantalla 2024-11-06 013745.png" alt="Logo del Proyecto" width="400"/>
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+# Notas de la Versión
+
+Este proyecto utiliza algunos endpoints públicos para facilitar el desarrollo y pruebas, tales como **https://dummyjson.com** y **https://jsonplaceholder.typicode.com**. Estos servicios se integran durante el inicio de sesión, y se emplean credenciales de prueba para un consumo adecuado de estos recursos.
+
+## Configuración de Integraciones
+
+### 1. Configuración de Facebook Graph API
+Para la integración de la API de Facebook Graph, es necesario configurar los siguientes parámetros:
+- **Token de acceso**: Permite la autenticación y autorización de solicitudes.
+- **Webhook**: Necesario para recibir notificaciones en tiempo real y responder a eventos específicos.
+
+La configuración de estos elementos garantiza una conexión confiable con los servicios de Facebook.
+
+### 2. Integración con OpenAI
+El proyecto incluye código preconfigurado para el consumo de la API de OpenAI. Sin embargo, es necesario realizar configuraciones adicionales, como:
+- **API Key**: Se requiere una clave de acceso válida para utilizar los servicios de OpenAI.
+- **Configuración de puntos de acceso**: Asegura que las solicitudes se realicen correctamente.
+
+También se ha implementado, aunque comentado, un bot para casos de uso específicos, permitiendo su activación y personalización según necesidades.
+
+### 3. Conexión en Tiempo Real con Socket.io
+La aplicación cuenta con integración para conexiones en tiempo real mediante **Socket.io**, lo cual facilita la interacción instantánea entre usuarios y servicios.
+

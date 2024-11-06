@@ -54,23 +54,23 @@ Este proyecto es una aplicación de chat híbrida, construida utilizando **React
 
 ## Evidencias Version Mobile
 
-<img src="./assets/images/Captura%20de%20pantalla%202024-11-06%20012343.png" alt="Logo del Proyecto" width="200"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 012439.png" alt="Logo del Proyecto" width="200"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 012531.png" alt="Logo del Proyecto" width="200"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013009.png" alt="Logo del Proyecto" width="200"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013138.png" alt="Logo del Proyecto" width="200"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013321.png" alt="Logo del Proyecto" width="200"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013413.png" alt="Logo del Proyecto" width="200"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura%20de%20pantalla%202024-11-06%20012343.png" alt="Logo del Proyecto" width="200"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 012439.png" alt="Logo del Proyecto" width="200"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 012531.png" alt="Logo del Proyecto" width="200"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013009.png" alt="Logo del Proyecto" width="200"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013138.png" alt="Logo del Proyecto" width="200"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013321.png" alt="Logo del Proyecto" width="200"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013413.png" alt="Logo del Proyecto" width="200"/>
 
 ## Evidencias Version Desktop
 
-<img src="./assets/images/Captura de pantalla 2024-11-06 013505.png" alt="Logo del Proyecto" width="400"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013535.png" alt="Logo del Proyecto" width="400"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013551.png" alt="Logo del Proyecto" width="400"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013608.png" alt="Logo del Proyecto" width="400"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013625.png" alt="Logo del Proyecto" width="400"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013716.png" alt="Logo del Proyecto" width="400"/>
-<img src="./assets/images/Captura de pantalla 2024-11-06 013745.png" alt="Logo del Proyecto" width="400"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013505.png" alt="Logo del Proyecto" width="400"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013535.png" alt="Logo del Proyecto" width="400"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013551.png" alt="Logo del Proyecto" width="400"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013608.png" alt="Logo del Proyecto" width="400"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013625.png" alt="Logo del Proyecto" width="400"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013716.png" alt="Logo del Proyecto" width="400"/>
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 013745.png" alt="Logo del Proyecto" width="400"/>
 
 
 # Notas de la Versión
@@ -107,5 +107,4 @@ La documentación del backend está disponible en el directorio [`backend/out`](
 
 ### Vista previa de la documentación generada:
 
-<img src="./assets/images/Captura%20de%20pantalla%202024-11-06%20022226.png" alt="Vista previa de la documentación del backend" width="400"/>
-
+<img src="./frontEnd/SelliaDevApp/assets/images/Captura de pantalla 2024-11-06 022226.png" alt="Vista previa de la documentación del backend" width="400"/>

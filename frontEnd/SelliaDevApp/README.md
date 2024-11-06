@@ -96,3 +96,16 @@ También se ha implementado, aunque comentado, un bot para casos de uso específ
 ### 3. Conexión en Tiempo Real con Socket.io
 La aplicación cuenta con integración para conexiones en tiempo real mediante **Socket.io**, lo cual facilita la interacción instantánea entre usuarios y servicios.
 
+## 📄 Documentación del Backend
+
+La documentación del backend está disponible en el directorio [`backend/out`](./backend/out) y ofrece una guía detallada sobre el uso y configuración del servicio. En esta documentación encontrarás:
+
+- **Endpoints**: Explicación de cada ruta de la API, incluyendo métodos, parámetros necesarios y ejemplos de uso.
+- **Parámetros y Respuestas**: Descripción de los parámetros de entrada y estructura de las respuestas, incluyendo códigos de error.
+- **Autenticación**: Detalles sobre la autenticación de usuarios mediante JWT, lo cual asegura sesiones y solicitudes de manera segura.
+- **Integraciones Externas**: Información sobre la configuración y uso de las APIs de WhatsApp y OpenAI, así como otros servicios externos.
+
+### Vista previa de la documentación generada:
+
+<img src="./assets/images/Captura%20de%20pantalla%202024-11-06%20022226.png" alt="Vista previa de la documentación del backend" width="400"/>
+

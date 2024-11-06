@@ -21,6 +21,7 @@ const ChatListScreen = ({ onSelectChat, navigation, mobile,onLogout }) => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
+    console.log(mobile,"mobile paul");
     const getChats = async () => {
       try {
         // Simulación de la carga de datos desde JSON

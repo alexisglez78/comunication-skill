@@ -1,3 +1,10 @@
+/**
+ * Sends a text message to a WhatsApp number.
+ * 
+ * @param {string} textResponse - The text content of the message.
+ * @param {string} number - The phone number to send the message to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the formatted message data.
+ */
 function sampleText(textResponse, number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -7,13 +14,27 @@ function sampleText(textResponse, number) {
             "body": textResponse
         },
         "type": "text"
-    })
+    });
 
     return data;
 }
+
+/**
+ * Formats the Mexican phone number by removing the country code and replacing it with the correct format.
+ *
+ * @param {string} number - The phone number to format.
+ * @returns {string} The formatted phone number.
+ */
 function formatMexicanNumber(number) {
     return number.replace(/^521(\d{10})$/, '52$1');
 }
+
+/**
+ * Sends an image to a WhatsApp number.
+ * 
+ * @param {string} number - The phone number to send the image to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the image message data.
+ */
 function sampleImage(number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -23,10 +44,17 @@ function sampleImage(number) {
         "image": {
             "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/image_whatsapp.png"
         }
-    })
+    });
 
     return data;
 }
+
+/**
+ * Sends an audio message to a WhatsApp number.
+ * 
+ * @param {string} number - The phone number to send the audio to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the audio message data.
+ */
 function sampleAudio(number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -36,10 +64,17 @@ function sampleAudio(number) {
         "audio": {
             "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/audio_whatsapp.mp3"
         }
-    })
+    });
 
     return data;
 }
+
+/**
+ * Sends a video message to a WhatsApp number.
+ * 
+ * @param {string} number - The phone number to send the video to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the video message data.
+ */
 function sampleVideo(number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -49,10 +84,17 @@ function sampleVideo(number) {
         "video": {
             "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/video_whatsapp.mp4"
         }
-    })
+    });
 
     return data;
 }
+
+/**
+ * Sends a document to a WhatsApp number.
+ * 
+ * @param {string} number - The phone number to send the document to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the document message data.
+ */
 function sampleDocument(number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -62,10 +104,17 @@ function sampleDocument(number) {
         "document": {
             "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/document_whatsapp.pdf"
         }
-    })
+    });
 
     return data;
 }
+
+/**
+ * Sends an interactive button message to a WhatsApp number.
+ * 
+ * @param {string} number - The phone number to send the buttons to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the button message data.
+ */
 function sampleButtons(number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -96,10 +145,17 @@ function sampleButtons(number) {
                 ]
             }
         }
-    })
+    });
 
     return data;
 }
+
+/**
+ * Sends an interactive list message to a WhatsApp number.
+ * 
+ * @param {string} number - The phone number to send the list to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the list message data.
+ */
 function sampleList(number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -154,10 +210,17 @@ function sampleList(number) {
                 ]
             }
         }
-    })
+    });
 
     return data;
 }
+
+/**
+ * Sends a location message to a WhatsApp number.
+ * 
+ * @param {string} number - The phone number to send the location to (in the format 521XXXXXXXXXX).
+ * @returns {string} The JSON string with the location message data.
+ */
 function sampleLocation(number) {
     let numero = formatMexicanNumber(number);
     const data = JSON.stringify({
@@ -170,12 +233,10 @@ function sampleLocation(number) {
             "name": "Clara Cordova Moran",
             "address": "Paulino Miranda 3, Clara Cordova Moran, 54474 Cdad. Nicolás Romero, Méx."
         }
-
-    })
+    });
 
     return data;
 }
-
 
 module.exports = {
     sampleText,
@@ -186,5 +247,4 @@ module.exports = {
     sampleButtons,
     sampleList,
     sampleLocation
-}
-
+};

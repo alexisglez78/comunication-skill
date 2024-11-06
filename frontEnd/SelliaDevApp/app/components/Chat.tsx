@@ -6,9 +6,10 @@ import {
   StyleSheet,
   FlatList,
   Modal,
-  TouchableHighlight,
   TouchableOpacity,
   Alert,
+  Platform,
+  Dimensions
 } from "react-native";
 import CustModal from "../shared/Modals/CustomModal";
 import dataConversation from "../../data/Chat-id1.json";
@@ -20,7 +21,9 @@ import WelcomeScreen from "./WelcomeScreen";
 import { endMessage, sendWhatsAppMessage } from '../../services/whatsappService';
 import io from 'socket.io-client';
 
-const socket = io('https://ef82-2806-2f0-92e5-9718-5032-f239-fd93-3056.ngrok-free.app');  // Asegúrate de que no haya espacio extra al final de la URL
+const socket = io('https://ef82-2806-2f0-92e5-9718-5032-f239-fd93-3056.ngrok-free.app');  
+const { width } = Dimensions.get('window');
+const isDesktop = width >= 768;
 
 const Chat = ({ chatId }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -95,6 +98,7 @@ const Chat = ({ chatId }) => {
     // Enviar el mensaje por WhatsApp
     handleSendWhatsAppMessage();
     setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+    setNewMessage("")
   };
 
   const handleSendWhatsAppMessage = async () => {
@@ -110,7 +114,7 @@ const Chat = ({ chatId }) => {
     }
   };
 
-  if (!chatId) {
+  if (!chatId && isDesktop) {
     return (
       <WelcomeScreen />
     );
@@ -158,12 +162,12 @@ const Chat = ({ chatId }) => {
             </Text>
             <Text>{selectedMessage?.message}</Text>
 
-            <TouchableHighlight
+            <TouchableOpacity
               style={[styles.modalButton, { backgroundColor: "gray" }]}
               onPress={() => setSelectedMessage(null)}
             >
               <Text style={styles.modalButtonText}>Cerrar</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
-const processMessage = require("../shared/processMessage")
-
+const processMessage = require("../shared/processMessage");
+const { sendToSocket } = require("../socket");
 
 exports.verifyToken = (req, res) => {
     try {
@@ -13,7 +13,6 @@ exports.verifyToken = (req, res) => {
             res.send(challenge);
         } else {
             res.status(400).send();
-
         }
 
     } catch (error) {
@@ -34,7 +33,12 @@ exports.receiveMessage = async (req, res) => {
             var text = getTextUser(messages);
 
             if (text != "") {
-                await processMessage.process(text,number)
+                await processMessage.process(text, number);
+                try {
+                    sendToSocket(number, text);
+                } catch (error) {
+                    console.log(error,"error socket");
+                }
             }
 
         }
@@ -43,10 +47,8 @@ exports.receiveMessage = async (req, res) => {
     } catch (error) {
         myConsole.log(error);
         res.send("EVENT_RECEIVED");
-
     }
 };
-
 
 function getTextUser(messages) {
     var text = "";
@@ -73,7 +75,6 @@ function getTextUser(messages) {
         }
     } else {
         myConsole.log("sin mensaje");
-
     }
     return text;
 }

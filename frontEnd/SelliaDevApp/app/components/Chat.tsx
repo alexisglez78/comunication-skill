@@ -8,6 +8,7 @@ import {
   Modal,
   TouchableHighlight,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import CustModal from "../shared/Modals/CustomModal";
 import dataConversation from "../../data/Chat-id1.json";
@@ -16,6 +17,10 @@ import Header from "../shared/header";
 import EmojiPicker from "../shared/EmojiPicker";
 import UserService from "../../services/userService";
 import WelcomeScreen from "./WelcomeScreen";
+import { endMessage, sendWhatsAppMessage } from '../../services/whatsappService';
+import io from 'socket.io-client';
+
+const socket = io('https://ef82-2806-2f0-92e5-9718-5032-f239-fd93-3056.ngrok-free.app');  // Asegúrate de que no haya espacio extra al final de la URL
 
 const Chat = ({ chatId }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,27 +50,29 @@ const Chat = ({ chatId }) => {
   useEffect(() => {
     const loadData = async () => {
       const dataConversation = await UserService.getChatData(chatId);
-      console.log(dataConversation, "ajale");
-      if (dataConversation) {
-      }
-      setIsLoading(true);
       setChatData(dataConversation);
       setIsLoading(false);
-      setUserData(chatId); // Actualiza userData aquí para enviarlo al Header
+      setUserData(chatId);
     };
-    try {
-      console.log(chatId, "chatId");
-      if (chatId) {
-        console.log("cargando data");
-        loadData();
-      }else{
-        
-        console.log("no cargando data");
-      }
-    } catch (error) {
-      console.log(error, "asdasads");
+
+    if (chatId) {
+      loadData();
+      socket.on('whatsapp message', (message) => {
+        console.log('Nuevo mensaje de WhatsApp:', message);
+        setChatData((prevData) => ({
+          ...prevData,
+          messages: [...prevData.messages, message], // Agrega el mensaje al final
+        }));
+        setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+      });
+    } else {
+      console.log("No cargando datos");
     }
-  }, [chatId, userData]);
+
+    return () => {
+      socket.off('whatsapp message');
+    };
+  }, [chatId]); // Depende del chatId
 
   const sendMessage = () => {
     if (newMessage.trim() === "") return;
@@ -81,18 +88,33 @@ const Chat = ({ chatId }) => {
       ...prevData,
       messages: [...prevData.messages, message], // Agrega el mensaje al final
     }));
-    setNewMessage("");
+    socket.emit('chat message', newMessage);
 
     // Desplazar hacia abajo al último mensaje
+    
+    // Enviar el mensaje por WhatsApp
+    handleSendWhatsAppMessage();
     setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+  };
+
+  const handleSendWhatsAppMessage = async () => {
+    console.log("Enviando mensaje a WhatsApp");
+    try {
+      const response = await sendWhatsAppMessage('525574518872', newMessage); // Número de WhatsApp de destino
+      console.log("WhatsApp API response:", response);
+      Alert.alert("Mensaje enviado por WhatsApp");
+      setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+    } catch (error) {
+      console.log("Error al enviar el mensaje:", error);
+      Alert.alert("Error al enviar el mensaje por WhatsApp");
+    }
   };
 
   if (!chatId) {
     return (
-      <WelcomeScreen></WelcomeScreen>
+      <WelcomeScreen />
     );
   }
-
 
   const renderMessageItem = ({ item }) => {
     const isSent = item.sender === "Tú";

@@ -14,6 +14,8 @@ import dataConversation from "../../data/Chat-id1.json";
 import { styles } from "../styles/ChatStyles";
 import Header from "../shared/header";
 import EmojiPicker from "../shared/EmojiPicker";
+import UserService from "../../services/userService";
+import WelcomeScreen from "./WelcomeScreen";
 
 const Chat = ({ chatId }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +26,8 @@ const Chat = ({ chatId }) => {
   const [newMessage, setNewMessage] = useState("");
   const flatListRef = useRef(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
 
   const toggleEmojiPicker = () => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -40,12 +44,28 @@ const Chat = ({ chatId }) => {
 
   useEffect(() => {
     const loadData = async () => {
+      const dataConversation = await UserService.getChatData(chatId);
+      console.log(dataConversation, "ajale");
+      if (dataConversation) {
+      }
       setIsLoading(true);
       setChatData(dataConversation);
       setIsLoading(false);
+      setUserData(chatId); // Actualiza userData aquí para enviarlo al Header
     };
-    loadData();
-  }, []);
+    try {
+      console.log(chatId, "chatId");
+      if (chatId) {
+        console.log("cargando data");
+        loadData();
+      }else{
+        
+        console.log("no cargando data");
+      }
+    } catch (error) {
+      console.log(error, "asdasads");
+    }
+  }, [chatId, userData]);
 
   const sendMessage = () => {
     if (newMessage.trim() === "") return;
@@ -66,6 +86,13 @@ const Chat = ({ chatId }) => {
     // Desplazar hacia abajo al último mensaje
     setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
   };
+
+  if (!chatId) {
+    return (
+      <WelcomeScreen></WelcomeScreen>
+    );
+  }
+
 
   const renderMessageItem = ({ item }) => {
     const isSent = item.sender === "Tú";
@@ -88,7 +115,7 @@ const Chat = ({ chatId }) => {
 
   return (
     <View style={styles.chatContainer}>
-      <Header />
+      <Header userData={userData} />
       <FlatList
         ref={flatListRef}
         data={chatData.messages}

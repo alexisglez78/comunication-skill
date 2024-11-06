@@ -1,10 +1,10 @@
 {
     "chat_id": 1,
-    "name": "Leanne Graham",
+    "name": "Chat con Ervin Howell",
     "messages": [
       {
         "message_id": 1,
-        "sender": "Leanne Graham",
+        "sender": "Ervin Howell",
         "message": "Hola, ¿cómo estás?",
         "timestamp": "2023-11-05T12:30:00Z"
       },
@@ -16,7 +16,7 @@
       },
       {
         "message_id": 3,
-        "sender": "Leanne Graham",
+        "sender": "Ervin Howell",
         "message": "También bien, gracias. ¿Qué tal tu fin de semana?",
         "timestamp": "2023-11-05T12:32:00Z"
       }

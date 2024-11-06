@@ -1,7 +1,7 @@
 [
     {
       "chat_id": 1,
-      "name": "Chat con Alex",
+      "name": "Leanne Graham",
       "last_message": {
         "message_id": 101,
         "message": "Hola, ¿cómo estás?",
@@ -10,16 +10,16 @@
     },
     {
       "chat_id": 2,
-      "name": "Grupo de Amigos",
+      "name": "Ervin Howell",
       "last_message": {
         "message_id": 102,
-        "message": "Recuerden que mañana nos vemos!",
+        "message": "Recuerda que mañana nos vemos!",
         "timestamp": "2023-11-04T15:45:00Z"
       }
     },
     {
       "chat_id": 3,
-      "name": "Trabajo en equipo",
+      "name": "Clementine Bauch",
       "last_message": {
         "message_id": 103,
         "message": "¿Terminaste el reporte?",
@@ -28,7 +28,7 @@
     },
     {
       "chat_id": 4,
-      "name": "Familia",
+      "name": "Patricia Lebsack",
       "last_message": {
         "message_id": 104,
         "message": "Nos vemos el domingo!",

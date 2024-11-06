@@ -16,13 +16,22 @@ const isDesktop = width >= 768;
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [selectedChatId, setSelectedChatId] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+
 
   const handleSelectChat = (chatId) => {
     setSelectedChatId(chatId);
     if (!isDesktop) {
-      console.log("seuuuun");
-      setSelectedChatId(chatId); 
+      setSelectedChatId(chatId);
+    }
+  };
+  const handleLogout = async () => {
+    try {
+      setIsAuthenticated(false);
+      setSelectedChatId(null);
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
     }
   };
 
@@ -35,11 +44,12 @@ export default function RootLayout() {
               <View style={styles.container}>
                 <View style={styles.desktopLayout}>
                   <View style={styles.leftPanel}>
-                    {/* <SessionInfo /> */}
+                    <SessionInfo  />
                     <ChatListScreen
                       onSelectChat={setSelectedChatId}
                       navigation={"none"}
                       mobile={isDesktop}
+                      onLogout={handleLogout}
                     />
                   </View>
                   <View style={styles.centerPanel}>
@@ -54,19 +64,20 @@ export default function RootLayout() {
               >
                 <Drawer.Screen 
                   name="components/Chats"
-                  options={{ title: '' }} // Cambia el título aquí
+                  options={{ title: '' }}
                 >
                   {({ navigation }) => (
                     <ChatListScreen
                       onSelectChat={setSelectedChatId}
                       navigation={navigation}
                       mobile={isDesktop}
+                      onLogout={handleLogout}
                     />
                   )}
                 </Drawer.Screen>
                 <Drawer.Screen 
                   name="components/Chat"
-                  options={{ title: 'Usuario $varUSer' }}
+                  options={{ title: 'Bienvenido' }}
                 >
                   {({ route }) => {
                     const chatId = route.params?.chatId || selectedChatId;
